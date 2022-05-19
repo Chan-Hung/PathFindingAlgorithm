@@ -54,35 +54,39 @@ class Node:
     def draw_path(self):
         self.color = PURPLE
 
-    def add_neighbours(self, grid):
+    def add_neighbors(self, grid):
         self.neighbours = []
 
-        #WIDTH // SQUARE_SIZE = total rows in grid
-        # Up
-        if self.row > 0:
-            neighbour = grid[self.row - 1][self.col]
-            if not neighbour.is_wall(): 
-                self.neighbours.append(neighbour)
+        #Ma trận có tọa độ grid = WIDTH x WIDTH
+
+        #Move up
+        #Cột đang xét phải là cột thứ 2 tính từ trên xuống
+        #Và ở trên dòng đnag xét không phải là vật cản
+        if self.row > 0 and not grid[self.row - 1][self.col].is_wall():
+                self.neighbours.append(grid[self.row - 1][self.col])
         
-        # Right
-        if self.col < WIDTH // SQUARE_SIZE - 1:
-            neighbour = grid[self.row][self.col + 1]
-            if not neighbour.is_wall():
-                self.neighbours.append(neighbour)
-            
-        # Down
-        if self.row < WIDTH // SQUARE_SIZE - 1:
-            neighbour = grid[self.row + 1][self.col]
-            if not neighbour.is_wall():
-                self.neighbours.append(neighbour)
+        #Move left
+        #Cột đang xét phải là cột thứ 2 tính từ biên trái
+        #Và bên trái cột đang xét không phải là nút vật cản
+        if self.col > 0 and not grid[self.row][self.col - 1].is_wall():
+                self.neighbours.append(grid[self.row][self.col - 1])
 
-        # Left
-        if self.col > 0:
-            neighbour = grid[self.row][self.col - 1]
-            if not neighbour.is_wall():
-                self.neighbours.append(neighbour)
+        #Move Right
+        #Cột đang xét phải là cột thứ 2 tính từ biên phải
+        #và bên phải cột đang xét không là nút vật cản
+        if self.col < WIDTH // SQUARE_SIZE - 1 and not grid[self.row][self.col + 1].is_wall():
+            self.neighbours.append(grid[self.row][self.col + 1])
 
+        #Move down
+        #Cột đang xét phải là cột thứ 2 tính từ dưới lên
+        #Và dòng bên dưới dòng đang xét không là vật cản
+        if self.col < WIDTH // SQUARE_SIZE - 1 and not grid[self.row + 1][self.col].is_wall():
+            self.neighbours.append(grid[self.row + 1][self.col])
+
+        
     #draw a cube in grid
+    #Vẽ từng khối (tượng trưng cho 1 node) trên lưới ma trận
+    #Kích thước là 1 square: hình vuông có kích thước (SQUARE_SIZE * SQUARE_SIZE)
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
 
