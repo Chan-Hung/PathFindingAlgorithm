@@ -3,7 +3,7 @@ import time
 from queue import Queue
 
 def algorithm(start, end, draw, win):
-    #BGS sử dụng cấu trúc queue
+    #BFS sử dụng cấu trúc queue
 
     start_time = time.time()
 

@@ -3,14 +3,6 @@ import pygame
 
 
 def algorithm(start, end, draw, win):
-    """
-    Depth First Search uses LIFO (stack).
-    Depth First Search is not a weighted algorithm and does not guarantee the shortest path.
-    
-    Time complexity is O(N + E), where N is number of nodes and E is number of edges
-    Space complexity is O(N), where N is the number of nodes in the call stack
-    The order of traversal for DFS is Up, Right, Down, Left
-    """
 
     start_time = time.time()
 
@@ -41,7 +33,7 @@ def algorithm(start, end, draw, win):
         # If we found the end node, draw the path
         if current_node == end:
             time_taken = float(round(time.time() - start_time, 2))
-            cost = win.draw_solution(start, end, path, draw)
+            cost = win.solution(start, end, path, draw)
             win.previous_results = [
                 "Kết quả DFS", 
                 "Chi phí: " + str(cost), 
@@ -53,7 +45,6 @@ def algorithm(start, end, draw, win):
             visited.add(current_node)
 
         for neighbour in current_node.neighbours:
-
             # Make sure not to add duplicate nodes into the frontier and path
             if neighbour not in visited:
                 path[neighbour] = current_node

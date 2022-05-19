@@ -4,11 +4,6 @@ from queue import PriorityQueue
 
 
 def h(point1, point2):
-    """
-    This is the Manhattan Distance algorithm. 
-    This is an admissible algorithm which means it never overestimates the cost of reaching the goal node.
-    It is an estimate of the total nodes along axes at right angles from point1 to point2.
-    """
     x1, y1 = point1
     x2, y2 = point2
     return abs(x1 - x2) + abs(y1 - y2)
@@ -34,7 +29,7 @@ def algorithm(start, end, grid, draw, win):
     #DÙng dictionary để ánh xạ 1 nút đến g_score tương ứng của nó ở các nút trên lưới
     g_score = {Node: float("inf") for row in grid for Node in row}
     g_score[start] = 0
-
+    
     #f_score = g_score + h_score
     #h_score là hàm heuristic (khoảng cách Manhattan)
     f_score = {Node: float("inf") for row in grid for Node in row}
@@ -75,7 +70,7 @@ def algorithm(start, end, grid, draw, win):
                 g_score[neighbour] = next_g_score
 
                 #f = h + g + weight
-                f_score[neighbour] = next_g_score + h(neighbour.get_position(), end.get_position()) + neighbour.weight
+                f_score[neighbour] = next_g_score + h(neighbour.get_position(), end.get_position())
 
                 # Make sure not to add duplicate nodes into the frontier and path
                 if neighbour not in visited:

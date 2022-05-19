@@ -32,9 +32,6 @@ class Node:
     def reset_color(self):
         self.color = GREY
     
-    def reset_weight(self):
-        self.weight = 1
-
     #First click
     def place_start(self):
         self.color = GREEN
@@ -47,10 +44,6 @@ class Node:
     def place_wall(self):
         self.color = BLACK
     
-    def place_weight(self):
-        self.weight = 9
-
-
     def draw_open(self):
         self.color = BLUE
     

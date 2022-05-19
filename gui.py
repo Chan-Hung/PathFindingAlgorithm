@@ -91,13 +91,14 @@ class Gui:
         text = self.font.render("DFS", True, BLACK)
         self.win.blit(text, (SQUARE_SIZE * 21 + 12, SQUARE_SIZE * 42 + 2))
 
-
+    #IN kết quả
     def results(self):
         if self.previous_results:
             for i in range(len(self.previous_results)):
                 text = self.font.render(self.previous_results[i], True, BLACK)
                 self.win.blit(text, (SQUARE_SIZE * 27 + 10, SQUARE_SIZE * (41 + i) + 10))
 
+    #Tính chi phí
     def solution(self, start, end, path, draw):
         #Tổng chỉ phí
         cost = 0

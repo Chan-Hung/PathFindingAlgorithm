@@ -1,6 +1,6 @@
 import pygame
 from gui import Gui
-from SearchAlgorithms import A_Star, BFS
+from SearchAlgorithms import A_Star, BFS, DFS
 
 def start_main():
     win = Gui()
@@ -77,8 +77,10 @@ def start_main():
                         if win.algorithm == "a_star":
                             A_Star.algorithm(start, end, grid, lambda: win.draw(grid), win)
                         elif win.algorithm == "bfs":
-                            BFS.algorithm(start, end, grid, lambda: win.draw(grid), win)
-                        
+                            BFS.algorithm(start, end, lambda: win.draw(grid), win)
+                        elif win.algorithm == "dfs":
+                            DFS.algorithm(start, end, lambda: win.draw(grid), win)
+
                 # Xóa màn hình vẫn giữ lại nút bắt đầu, kết thúc
                 #Bấm nút d (delete)
                 if event.key == pygame.K_d:
@@ -86,7 +88,6 @@ def start_main():
                         for node in row:
                             if not node.is_wall() and not node.is_start() and not node.is_end():
                                 node.reset_color()
-                                node.reset_weight()
 
                 #Xóa toàn bộ màn hình
                 #Bấm nút c (clear)
@@ -96,7 +97,6 @@ def start_main():
                     for row in grid:
                         for node in row:
                                 node.reset_color()
-                                node.reset_weight()
     pygame.quit()
 
 if __name__ == "__main__":
