@@ -104,12 +104,12 @@ class Gui:
         end.place_end()
 
         #Truy bết từ nút kết thúc -> nút bắt đầu và vẽ đường đi
-        curent = end
+        current = end
 
         #Khi nút đang xét vẫn trong đường đi
-        while curent in path:
+        while current in path:
             #Nút khác 2 nút đầu và cuối
-            if curent not in (start, end):
+            if current not in (start, end):
                 #Chi phí + chi phí hiện tại
                 cost += current.weight
             current = path[current]
