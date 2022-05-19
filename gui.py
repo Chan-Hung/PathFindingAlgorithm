@@ -10,7 +10,7 @@ class Gui:
         self.font = pygame.font.SysFont(FONT_NAME, FONT_SIZE)
         self.win = pygame.display.set_mode((WIDTH, HEIGHT))
         self.algorithm = None
-        self.previous_result = []
+        self.previous_results = []
 
     def make_grid(self):
         #Make an N x N matrix with each index implemented as a Node
@@ -93,10 +93,10 @@ class Gui:
 
 
     def results(self):
-        if self.previous_result:
+        if self.previous_results:
             for i in range(len(self.previous_results)):
                 text = self.font.render(self.previous_results[i], True, BLACK)
-                self.win.blit(text, (SQUARE_SIZE * 27 + 10, SQUARE_SIZE * (41 + 1)) + 12)
+                self.win.blit(text, (SQUARE_SIZE * 27 + 10, SQUARE_SIZE * (41 + i) + 10))
 
     def solution(self, start, end, path, draw):
         #Tổng chỉ phí
@@ -115,6 +115,7 @@ class Gui:
             current = path[current]
             current.draw_path()
             draw()
+            pygame.time.wait(30)
 
         start.place_start()
         return cost

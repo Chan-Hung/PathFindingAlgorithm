@@ -23,6 +23,12 @@ class Node:
     def is_path(self):
         return self.color == PURPLE
     
+    def is_start(self):
+        return self.color == GREEN
+
+    def is_end(self):
+        return self.color == RED
+
     def reset_color(self):
         self.color = GREY
     

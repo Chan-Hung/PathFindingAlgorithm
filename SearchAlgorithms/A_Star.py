@@ -23,8 +23,8 @@ def algorithm(start, end, grid, draw, win):
     #Biến frontier là hàng đợi các nút đang được xem xét
     frontier = PriorityQueue()
     frontier.put((0, position, start))
-
-    #Theo dõi các dườngđi bằng cách lưu vị trí nút nào đến twf đâu
+ 
+    #Theo dõi các đường đi bằng cách lưu vị trí nút nào đến twf đâu
     path = {}
 
     #Một set các node đã visited
@@ -52,13 +52,16 @@ def algorithm(start, end, grid, draw, win):
 
         # If we found the solution, draw the path
         if current_node == end:
+            #Tính thời gian chạy thuật toán, làm tròn 2 chữ số (đơn vị giây)
             time_taken = float(round(time.time() - start_time, 2))
+            #Tính chi phí quãng đường
             cost = win.solution(start, end, path, draw)
+            #Chứa kết quả vào mảng 
             win.previous_results = [
-                "A* Search Results", 
-                "Total Cost of Path: " + str(cost), 
-                "Time Taken: " + str(time_taken) + " seconds",
-                "Visited Nodes: " + str(len(visited))]
+                "   Kết quả A*", 
+                "Chi phí: " + str(cost), 
+                "Thời gian: " + str(time_taken) + "s",
+                "Nút đã duyệt: " + str(len(visited))]
             return True
 
         # This will be the next g score for any neighbours with lower costs
@@ -66,9 +69,12 @@ def algorithm(start, end, grid, draw, win):
 
         for neighbour in current_node.neighbours:
             
-            # If we found a neighbour node that has a lower cost for reaching goal node
+            #Nếu ta thấy 1 nút lân cận có chi phí thấp hơn để đến nút đích
+            #Ta update lại quãng đường đi và theo dõi nó
             if next_g_score < g_score[neighbour]:
                 g_score[neighbour] = next_g_score
+
+                #f = h + g + weight
                 f_score[neighbour] = next_g_score + h(neighbour.get_position(), end.get_position()) + neighbour.weight
 
                 # Make sure not to add duplicate nodes into the frontier and path
