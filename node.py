@@ -58,7 +58,6 @@ class Node:
         self.neighbours = []
 
         #Ma trận có tọa độ grid = WIDTH x WIDTH
-
         #Move up
         #Cột đang xét phải là cột thứ 2 tính từ trên xuống
         #Và ở trên dòng đnag xét không phải là vật cản
@@ -80,7 +79,7 @@ class Node:
         #Move down
         #Cột đang xét phải là cột thứ 2 tính từ dưới lên
         #Và dòng bên dưới dòng đang xét không là vật cản
-        if self.col < WIDTH // SQUARE_SIZE - 1 and not grid[self.row + 1][self.col].is_wall():
+        if self.row < WIDTH // SQUARE_SIZE - 1 and not grid[self.row + 1][self.col].is_wall():
             self.neighbours.append(grid[self.row + 1][self.col])
 
         
