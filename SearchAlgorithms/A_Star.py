@@ -29,7 +29,7 @@ def algorithm(start, end, grid, draw, win):
     #DÙng dictionary để ánh xạ 1 nút đến g_score tương ứng của nó ở các nút trên lưới
     g_score = {Node: float("inf") for row in grid for Node in row}
     g_score[start] = 0
-    
+
     #f_score = g_score + h_score
     #h_score là hàm heuristic (khoảng cách Manhattan)
     f_score = {Node: float("inf") for row in grid for Node in row}
@@ -69,7 +69,7 @@ def algorithm(start, end, grid, draw, win):
             if next_g_score < g_score[neighbour]:
                 g_score[neighbour] = next_g_score
 
-                #f = h + g + weight
+                #f = h + g 
                 f_score[neighbour] = next_g_score + h(neighbour.get_position(), end.get_position())
 
                 # Make sure not to add duplicate nodes into the frontier and path
