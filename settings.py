@@ -5,7 +5,7 @@ SQUARE_SIZE = 15
 ROWS = 41
 COLS = 41
 
-TITLE = " Artificial Intelligent Project - Group 9m "
+TITLE = " Artificial Intelligent Project - Group 9 "
 FONT_NAME = "Verdana"
 FONT_SIZE = 15
 
