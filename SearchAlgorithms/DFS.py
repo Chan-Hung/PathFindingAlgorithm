@@ -35,7 +35,7 @@ def algorithm(start, end, draw, win):
             time_taken = float(round(time.time() - start_time, 2))
             cost = win.solution(start, end, path, draw)
             win.previous_results = [
-                "Kết quả DFS", 
+                "Kết quả thuật toán DFS", 
                 "Chi phí: " + str(cost), 
                 "Thời gian " + str(time_taken) + "s",
                 "Nút đã duyệt: " + str(len(visited))]

@@ -10,9 +10,7 @@ class Gui:
         self.win = pygame.display.set_mode((1100, SIZE))
         self.algorithm = None
         self.previous_results = []
-        self.openMap = False
-        self.saveMap = False
-        self.run = False
+ 
 
     def make_grid(self):
         #Make an N x N matrix with each index implemented as a Node
@@ -62,7 +60,7 @@ class Gui:
         text = self.font.render("A* Search", True, BLACK)
         #self.blit draw a source surface onto this surface
         #Màu của text sẽ đè lên
-        self.win.blit(text, (SQUARE_SIZE * 3, SQUARE_SIZE * 42 + 2))
+        self.win.blit(text, (SQUARE_SIZE * 2 + 12, SQUARE_SIZE * 42 + 2))
 
 
 
@@ -78,7 +76,7 @@ class Gui:
             #Nếu thuật toán được chọn khác bfs, fill HCN đó bằng mã màu mặc định
             pygame.draw.rect(self.win, GREY, (SQUARE_SIZE * 10 + 1, SQUARE_SIZE * 41 + 11, SQUARE_SIZE * 8 - 2, SQUARE_SIZE * 2 - 2), 0)
         text = self.font.render("BFS", True, BLACK)
-        self.win.blit(text, (SQUARE_SIZE * 10 + 12, SQUARE_SIZE * 42 + 2))
+        self.win.blit(text, (SQUARE_SIZE * 12 + 12, SQUARE_SIZE * 42 + 2))
 
 
         #Depth First Search (Thuật toán DFS)
@@ -91,7 +89,7 @@ class Gui:
             #Nếu thuật toán được chọn khác dfs, fill HCN đó bằng mã màu mặc định
             pygame.draw.rect(self.win, GREY, (SQUARE_SIZE * 19 + 1, SQUARE_SIZE * 41 + 11, SQUARE_SIZE * 8 - 2, SQUARE_SIZE * 2 - 2), 0)
         text = self.font.render("DFS", True, BLACK)
-        self.win.blit(text, (SQUARE_SIZE * 20 + 12, SQUARE_SIZE * 42 + 2))
+        self.win.blit(text, (SQUARE_SIZE * 21 + 12, SQUARE_SIZE * 42 + 2))
 
         #Open map 
         # Greedy BFS Algorithm
@@ -112,7 +110,7 @@ class Gui:
         pygame.draw.rect(self.win, BLACK, (SQUARE_SIZE * 19, SQUARE_SIZE * 44, SQUARE_SIZE * 8, SQUARE_SIZE * 2))
         pygame.draw.rect(self.win, GREY, (SQUARE_SIZE * 19 + 1, SQUARE_SIZE * 44 + 1, SQUARE_SIZE * 8 - 2, SQUARE_SIZE * 2 - 2))
         text = self.font.render("Clear path", True, BLACK)
-        self.win.blit(text, (SQUARE_SIZE * 21 + 6, SQUARE_SIZE * 44 + 7))
+        self.win.blit(text, (SQUARE_SIZE * 20 + 12, SQUARE_SIZE * 44 + 7))
 
 
     #In kết quả
@@ -120,7 +118,7 @@ class Gui:
         if self.previous_results:
             for i in range(len(self.previous_results)):
                 text = self.font.render(self.previous_results[i], True, BLACK)
-                self.win.blit(text, (SQUARE_SIZE * 27 + 10, SQUARE_SIZE * (41 + i) + 10))
+                self.win.blit(text, (SQUARE_SIZE * 27 + 10, SQUARE_SIZE * (41 + i) + 14))
 
     #Tính chi phí và vẽ đường đi
     def solution(self, start, end, path, draw):
@@ -167,9 +165,9 @@ class Gui:
         text = font.render("********************************", True, BLACK)
         self.win.blit(text, (SQUARE_SIZE * 49, SQUARE_SIZE * 16))
        
-        pygame.draw.rect(self.win, BLACK, (SQUARE_SIZE * 51, SQUARE_SIZE * 18, SQUARE_SIZE * 11, SQUARE_SIZE * 2))
+        pygame.draw.rect(self.win, PINK, (SQUARE_SIZE * 51, SQUARE_SIZE * 18, SQUARE_SIZE * 11, SQUARE_SIZE * 2))
         pygame.draw.rect(self.win, GREY, (SQUARE_SIZE * 51 + 1, SQUARE_SIZE * 18 + 1, SQUARE_SIZE * 11 - 2, SQUARE_SIZE * 2 - 2))
-        text = self.font.render("Hướng dẫn thao tác", True, BLACK)
+        text = self.font.render("Hướng dẫn thao tác", True, PURPLE)
         self.win.blit(text, (SQUARE_SIZE * 51 + 6, SQUARE_SIZE * 18 + 7))
 
         font = pygame.font.SysFont("Calibri", 20)

@@ -53,7 +53,7 @@ def algorithm(start, end, grid, draw, win):
             cost = win.solution(start, end, path, draw)
             #Chứa kết quả vào mảng 
             win.previous_results = [
-                "   Kết quả A*", 
+                "   Kết quả thuật toán A*", 
                 "Chi phí: " + str(cost), 
                 "Thời gian: " + str(time_taken) + "s",
                 "Nút đã duyệt: " + str(len(visited))]

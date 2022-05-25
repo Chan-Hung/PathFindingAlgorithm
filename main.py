@@ -103,14 +103,6 @@ def start_main():
                         elif gui.algorithm == "dfs":
                             DFS.algorithm(start, end, lambda: gui.draw(grid), gui)
 
-                # Xóa màn hình vẫn giữ lại nút bắt đầu, kết thúc và nút vật cản
-                #Bấm nút d (delete)
-                if event.key == pygame.K_d:
-                    for row in grid:
-                        for node in row:
-                            if not node.is_wall() and not node.is_start() and not node.is_end():
-                                node.reset_color()
-
                 #Xóa toàn bộ màn hình
                 #Bấm nút c (clear)
                 if event.key == pygame.K_c:
