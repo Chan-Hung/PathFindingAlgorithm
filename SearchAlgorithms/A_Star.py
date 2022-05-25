@@ -19,7 +19,7 @@ def algorithm(start, end, grid, draw, win):
     frontier = PriorityQueue()
     frontier.put((0, position, start))
  
-    #Theo dõi các đường đi bằng cách lưu vị trí nút nào đến twf đâu
+    #Theo dõi các đường đi bằng cách lưu vị trí nút nào đến từ đâu
     path = {}
 
     #Một set các node đã visited

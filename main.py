@@ -1,16 +1,17 @@
 import pygame
 from gui import Gui
 from SearchAlgorithms import A_Star, BFS, DFS
+from file_handling import open_map, save_map
 
 def start_main():
-    win = Gui()
-    grid = win.make_grid()
+    gui = Gui()
+    grid = gui.make_grid()
     start = None
     end = None
 
     run = True
     while run:
-        win.draw(grid)
+        gui.draw(grid)
         #Bắt sự kiện
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -19,7 +20,7 @@ def start_main():
             #Click trong ma trận grid
             if pygame.mouse.get_pressed()[0]:
                 pos = pygame.mouse.get_pos()
-                row, col = win.get_mouse_position(pos)
+                row, col = gui.get_mouse_position(pos)
 
                 #Nếu tọa độ chuột được click trong lưới ma trận 41 x 41 (chưa ra ngoài biên đến các nút chức năng)
                 if 0 <= row <= 40 and 0 <= col <= 40:
@@ -38,23 +39,43 @@ def start_main():
                     #Nút bấm khác start node và end node => nút vật cản
                     elif node != start and node != end:
                         node.place_wall()
-                #Select algorithms outside the grid
+
+                #Lựa chọn thuật toán bên ngoài lưới ma trận
                 elif 625 <= pos[1] <= 655:
 
                     #A* button
                     if 15 <= pos[0] <= 135:
-                        win.algorithm = "a_star"
+                        gui.algorithm = "a_star"
+                        
+
                     #BFS button
                     elif 150 <= pos[0] <= 270:
-                        win.algorithm = "bfs"
+                        
+                        gui.algorithm = "bfs"
                     #DFS button
                     elif 285 <= pos[0] <= 405:
-                        win.algorithm = "dfs"
+                        gui.algorithm = "dfs"
 
-                #Reset trạng thái 
+                #Lựa chọn các nút chức năng
+                elif 660 <= pos[1] <= 690:
+                    if 15 <= pos[0] <= 135:
+                        gui.openMap = True
+                        grid, start, end = open_map()
+                    elif 150 <= pos[0] <= 270:
+                        gui.saveMap = True
+                        save_map(grid)
+
+                    #Xóa đường đi
+                    elif 285 <= pos[0] <= 405:
+                        for row in grid:
+                            for node in row:
+                                if not node.is_wall() and not node.is_start() and not node.is_end():
+                                    node.reset_color()
+
+            #Reset trạng thái dùng chuột phải
             elif pygame.mouse.get_pressed()[2]:
                 pos = pygame.mouse.get_pos()
-                row, col = win.get_mouse_position(pos)
+                row, col = gui.get_mouse_position(pos)
                 if 0 <= row <= 41 and 0 <= col <= 41:
                     node = grid[row][col]
                     node.reset_color()
@@ -73,15 +94,16 @@ def start_main():
                             if node != start and node != end and not node.is_wall():
                                 node.reset_color()
                             node.add_neighbors(grid)
-                    if win.algorithm:
-                        if win.algorithm == "a_star":
-                            A_Star.algorithm(start, end, grid, lambda: win.draw(grid), win)
-                        elif win.algorithm == "bfs":
-                            BFS.algorithm(start, end, lambda: win.draw(grid), win)
-                        elif win.algorithm == "dfs":
-                            DFS.algorithm(start, end, lambda: win.draw(grid), win)
 
-                # Xóa màn hình vẫn giữ lại nút bắt đầu, kết thúc
+                    if gui.algorithm:
+                        if gui.algorithm == "a_star":
+                            A_Star.algorithm(start, end, grid, lambda: gui.draw(grid), gui)
+                        elif gui.algorithm == "bfs":
+                            BFS.algorithm(start, end, lambda: gui.draw(grid), gui)
+                        elif gui.algorithm == "dfs":
+                            DFS.algorithm(start, end, lambda: gui.draw(grid), gui)
+
+                # Xóa màn hình vẫn giữ lại nút bắt đầu, kết thúc và nút vật cản
                 #Bấm nút d (delete)
                 if event.key == pygame.K_d:
                     for row in grid:
@@ -94,6 +116,7 @@ def start_main():
                 if event.key == pygame.K_c:
                     start = None
                     end = None
+                    gui.previous_results = []
                     for row in grid:
                         for node in row:
                                 node.reset_color()
@@ -101,3 +124,5 @@ def start_main():
 
 if __name__ == "__main__":
     start_main()
+
+

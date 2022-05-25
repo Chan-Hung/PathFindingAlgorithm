@@ -1,11 +1,11 @@
 #SIZE of the program
-WIDTH = 615
-HEIGHT = 700
+WIDTH = 615 #Kích thước ma trận
+SIZE = 700 #Kích thước cửa sổ pygam
 SQUARE_SIZE = 15
 ROWS = 41
 COLS = 41
 
-TITLE = " Artificial Intelligent Project - Group 7"
+TITLE = " Artificial Intelligent Project - Group 9m "
 FONT_NAME = "Verdana"
 FONT_SIZE = 15
 
@@ -14,7 +14,7 @@ FONT_SIZE = 15
 #is_default
 #self.color
 #reset_color
-GREY = (220, 220, 220)
+GREY = (250, 250, 250)
 
 #Start node: first click on the grid
 #place_start
