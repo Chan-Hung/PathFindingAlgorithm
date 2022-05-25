@@ -1,6 +1,6 @@
 #SIZE of the program
 WIDTH = 615 #Kích thước ma trận
-SIZE = 700 #Kích thước cửa sổ pygam
+SIZE = 700 #Kích thước cửa sổ pygame
 SQUARE_SIZE = 15
 ROWS = 41
 COLS = 41
