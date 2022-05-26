@@ -1,6 +1,5 @@
 import pygame
 import time
-from queue import Queue
 
 def algorithm(start, end, draw, win):
     #BFS sử dụng cấu trúc queue
@@ -33,8 +32,8 @@ def algorithm(start, end, draw, win):
             cost = win.solution(start, end, path, draw)
             win.previous_results = [
                 "   Kết quả thuật toán BFS", 
-                "Chi phí: " + str(cost), 
                 "Thời gian: " + str(time_taken) + "s",
+                "Chi phí: " + str(cost), 
                 "Nút đã duyệt: " + str(len(visited))]
             return True
 

@@ -54,8 +54,8 @@ def algorithm(start, end, grid, draw, win):
             #Chứa kết quả vào mảng 
             win.previous_results = [
                 "   Kết quả thuật toán A*", 
-                "Chi phí: " + str(cost), 
                 "Thời gian: " + str(time_taken) + "s",
+                "Chi phí: " + str(cost), 
                 "Nút đã duyệt: " + str(len(visited))]
             return True
 
